@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const UserModel = require("./models/user");
+dotenv.config();
 
 const app = express();
-dotenv.config();
 const uri = process.env.DATABASE.replace(
-  "<PASSWORD>",
+  "{password}",
   process.env.DATABASE_PASSWORD
 );
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
