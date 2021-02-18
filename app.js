@@ -6,7 +6,10 @@ const UserModel = require("./models/user");
 
 const app = express();
 dotenv.config();
-const uri = `mongodb+srv://Levi:${process.env.DATABASE_PASSWORD}@cluster0.jjcfp.mongodb.net/projects?retryWrites=true&w=majority`;
+const uri = process.env.DATABASE.replace(
+  "<PASSWORD>",
+  process.env.DATABASE_PASSWORD
+);
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
