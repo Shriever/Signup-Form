@@ -1,11 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const UserModel = require("./models/user");
 
 const app = express();
-const uri =
-  "mongodb+srv://Levi:IrP9xx3nd7zisICL@cluster0.jjcfp.mongodb.net/projects?retryWrites=true&w=majority";
+dotenv.config();
+const uri = `mongodb+srv://Levi:${process.env.DATABASE_PASSWORD}@cluster0.jjcfp.mongodb.net/projects?retryWrites=true&w=majority`;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
@@ -19,7 +20,7 @@ app.post("/signup", (req, res) => {
     if (err) return console.error(err);
     if (user[0]) {
       res.render("alert", {
-        message: "User already exists"
+        message: "User already exists",
       });
     }
   });
@@ -57,7 +58,7 @@ app.get("/", (req, res) => {
   res.render("index", { title: "The Hub", message: "hello there!" });
 });
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log("Server is listening on port 3000...");
 });
