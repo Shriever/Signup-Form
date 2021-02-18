@@ -57,6 +57,7 @@ app.get("/", (req, res) => {
   res.render("index", { title: "The Hub", message: "hello there!" });
 });
 
-app.listen(3000, () => {
+const port = process.env.PORT || 3000
+app.listen(port, () => {
   console.log("Server is listening on port 3000...");
 });
