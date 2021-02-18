@@ -19,7 +19,7 @@ app.post("/signup", (req, res) => {
     if (err) return console.error(err);
     if (user[0]) {
       res.render("alert", {
-        message: "User already exists",
+        message: "User already exists"
       });
     }
   });
